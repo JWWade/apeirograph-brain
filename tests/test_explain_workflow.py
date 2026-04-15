@@ -57,6 +57,32 @@ class ExplainWorkflowTests(unittest.TestCase):
 
         self.assertIn("C ionian", result.summary)
         self.assertIn("Dm7", result.summary)
+        self.assertIn("Imaj7", result.salient_properties)
+        self.assertIn("vi7", result.salient_properties)
+        self.assertIn("ii7", result.salient_properties)
+
+    def test_explain_progression_surfaces_cadential_analysis(self):
+        progression = load_explain_input({
+            "scale_context": {
+                "root": "C",
+                "mode": "ionian",
+                "diatonic_pitch_classes": [0, 2, 4, 5, 7, 9, 11]
+            },
+            "chords": [
+                {"root": "D", "quality": "minor7", "pitch_classes": [2, 5, 9, 0], "label": "Dm7"},
+                {"root": "G", "quality": "dominant7", "pitch_classes": [7, 11, 2, 5], "label": "G7"},
+                {"root": "C", "quality": "major7", "pitch_classes": [0, 4, 7, 11], "label": "Cmaj7"}
+            ]
+        })
+
+        mock_client = Mock()
+        mock_client.generate.return_value = "This cadence sounds colorful and dramatic."
+
+        result = explain_progression(progression, client=mock_client)
+
+        self.assertIn("authentic cadence", result.summary)
+        self.assertIn("V7", result.salient_properties)
+        self.assertIn("tonic", " ".join(result.salient_properties).lower())
 
     def test_explain_progression_returns_structured_response(self):
         with EXAMPLE_FILE.open("r", encoding="utf-8") as handle:

@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from apeirograph_brain.ollama_client import OllamaClient, OllamaConnectionError
+from apeirograph_brain.progressions import analyze_progression, detect_cadence
 from apeirograph_brain.schemas import ChordObject, ExplanationResponse, ProgressionInput
 
 NOTE_NAMES = {
@@ -182,6 +183,21 @@ def _build_salient_properties(progression: ProgressionInput) -> List[str]:
         else:
             properties.append("includes non-diatonic color against the scale context")
 
+        mode_name = _normalize_mode_for_analysis(progression.scale_context.mode)
+        analysis = analyze_progression(
+            progression.chords,
+            progression.scale_context.root,
+            mode_name,
+        )
+        for item in analysis:
+            if item["roman"] not in properties:
+                properties.append(item["roman"])
+            properties.append("{0} = {1} ({2})".format(item["chord"], item["roman"], item["function"]))
+
+        cadence = detect_cadence(progression.chords, progression.scale_context.root, mode_name)
+        if cadence:
+            properties.append("ends with an {0} cadence".format(cadence))
+
     if progression.transform:
         properties.append("transform: {0}".format(progression.transform.operation))
 
@@ -255,11 +271,18 @@ def _build_fallback_summary(progression: ProgressionInput, tension_level: str) -
     labels = [chord.label or "{0}{1}".format(chord.root, chord.quality) for chord in progression.chords]
     path = " to ".join(labels)
     if progression.scale_context:
-        return "This phrase stays within {0} {1} and moves from {2}, creating {3} tension with readable forward motion.".format(
+        mode_name = _normalize_mode_for_analysis(progression.scale_context.mode)
+        analysis = analyze_progression(progression.chords, progression.scale_context.root, mode_name)
+        roman_path = "-".join(item["roman"] for item in analysis)
+        cadence = detect_cadence(progression.chords, progression.scale_context.root, mode_name)
+        cadence_text = " It closes with an {0} cadence.".format(cadence) if cadence else ""
+        return "This phrase stays within {0} {1} and moves from {2} as {3}, creating {4} tension with readable forward motion.{5}".format(
             progression.scale_context.root,
             progression.scale_context.mode,
             path,
+            roman_path,
             tension_level,
+            cadence_text,
         )
 
     return "This phrase moves from {0} and creates a {1} level of tension across the progression.".format(
@@ -297,6 +320,14 @@ def _model_summary_is_grounded(summary: str, progression: ProgressionInput) -> b
             return False
 
     return True
+
+
+def _normalize_mode_for_analysis(mode: str) -> str:
+    if mode.lower().strip() == "ionian":
+        return "major"
+    if mode.lower().strip() == "aeolian":
+        return "minor"
+    return mode
 
 
 def _natural_join(parts: List[str]) -> str:
