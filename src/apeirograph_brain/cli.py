@@ -1,6 +1,7 @@
 import argparse
 from typing import List, Optional
 
+from apeirograph_brain.chord_spelling import get_default_theory_prompt_lines, try_answer_basic_chord_note_prompt
 from apeirograph_brain.eval_runner import run_eval_pack
 from apeirograph_brain.explain import explain_file
 from apeirograph_brain.ollama_client import OllamaClient, OllamaConnectionError
@@ -9,18 +10,7 @@ from apeirograph_brain.suggest import suggest_file
 
 
 def build_default_system_prompt() -> str:
-    lines = [
-        "You are a careful music-theory assistant for harmonic analysis.",
-        "Use standard tonal terminology and exact pitch spelling.",
-        "Never invent chord tones, scale degrees, or harmonic functions.",
-        "When asked about a chord, name its exact notes first.",
-        "For a major triad, the chord tones are root, major third, and perfect fifth.",
-        "C major triad = C-E-G.",
-        "A minor triad = A-C-E.",
-        "If the user asks for one short sentence, answer in one short sentence.",
-        "If you are unsure, say you are unsure instead of guessing.",
-    ]
-    return "\n".join(lines)
+    return "\n".join(get_default_theory_prompt_lines())
 
 
 def build_startup_report() -> str:
@@ -130,6 +120,11 @@ def main(argv: Optional[List[str]] = None) -> int:
             return 1
 
     if args.prompt:
+        deterministic_answer = try_answer_basic_chord_note_prompt(args.prompt)
+        if deterministic_answer:
+            print(deterministic_answer)
+            return 0
+
         client = OllamaClient()
         system_prompt = args.system or build_default_system_prompt()
         try:
