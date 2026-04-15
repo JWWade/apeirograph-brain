@@ -16,7 +16,7 @@ def build_startup_report() -> str:
     lines: List[str] = [
         "Apeirograph Brain",
         "=================",
-        "Local harmonic intelligence lab scaffold is ready.",
+        "Local harmonic intelligence lab scaffold and schema layer are ready.",
         "",
         "Scaffold checks:",
     ]
@@ -29,8 +29,8 @@ def build_startup_report() -> str:
         [
             "",
             "Next recommended step:",
-            "- define the first harmonic domain schemas",
-            "- wire in Ollama once the schema layer is stable",
+            "- wire in Ollama for the first local model connection",
+            "- build explanation and suggestion workflows on top of the schemas",
         ]
     )
 

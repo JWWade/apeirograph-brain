@@ -1,0 +1,49 @@
+{
+  "chord_example": {
+    "root": "C",
+    "quality": "major7",
+    "pitch_classes": [0, 4, 7, 11],
+    "label": "Cmaj7",
+    "tags": ["stable", "bright", "tonic-like"]
+  },
+  "scale_context_example": {
+    "root": "C",
+    "mode": "ionian",
+    "diatonic_pitch_classes": [0, 2, 4, 5, 7, 9, 11]
+  },
+  "progression_example": {
+    "intent": "Move from tonic stability toward a light dominant pull.",
+    "scale_context": {
+      "root": "C",
+      "mode": "ionian",
+      "diatonic_pitch_classes": [0, 2, 4, 5, 7, 9, 11]
+    },
+    "chords": [
+      {
+        "root": "C",
+        "quality": "major7",
+        "pitch_classes": [0, 4, 7, 11],
+        "label": "Cmaj7"
+      },
+      {
+        "root": "A",
+        "quality": "minor7",
+        "pitch_classes": [9, 0, 4, 7],
+        "label": "Am7"
+      },
+      {
+        "root": "D",
+        "quality": "minor7",
+        "pitch_classes": [2, 5, 9, 0],
+        "label": "Dm7"
+      }
+    ],
+    "transform": {
+      "operation": "rerooting",
+      "description": "Preserve smooth motion while shifting functional emphasis.",
+      "parameters": {
+        "target_root": "D"
+      }
+    }
+  }
+}

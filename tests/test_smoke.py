@@ -15,7 +15,7 @@ from apeirograph_brain.settings import get_project_paths
 class ScaffoldSmokeTests(unittest.TestCase):
     def test_startup_report_mentions_lab(self):
         report = build_startup_report()
-        self.assertIn("Local harmonic intelligence lab scaffold is ready.", report)
+        self.assertIn("Local harmonic intelligence lab scaffold and schema layer are ready.", report)
 
     def test_expected_directories_exist(self):
         paths = get_project_paths(ROOT)

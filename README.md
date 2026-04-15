@@ -4,13 +4,17 @@ Apeirograph Brain is a local-first research scaffold for building a harmonic int
 
 ## Current status
 
-This repository currently implements **Issue 01: Repository Scaffold**.
+This repository now implements:
 
-The focus of this stage is to provide:
+- **Issue 01: Repository Scaffold**
+- **Issue 02: Domain Schemas**
+
+The current foundation provides:
 
 - a clean Python project layout
 - a lightweight starter app
-- space for curated data and eval cases
+- core Pydantic schemas for harmonic objects and responses
+- sample schema examples for validation
 - documentation that supports fast iteration
 
 ## Project structure
@@ -45,7 +49,6 @@ The focus of this stage is to provide:
 
 ## Near-term roadmap
 
-- Issue 02: define domain schemas
 - Issue 03: add Ollama integration
 - Issue 04: implement explanation flow
 - Issue 05: implement suggestion flow
