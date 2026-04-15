@@ -1,5 +1,11 @@
 # Evals
 
-This folder will hold small, named evaluation cases for explanation and suggestion workflows.
+This folder holds small, named evaluation cases for explanation and suggestion workflows.
 
-The first pass should emphasize clarity, usefulness, and domain correctness over scale.
+The first pass emphasizes clarity, usefulness, and domain correctness over scale.
+
+Use the starter pack with:
+
+- python app.py --run-evals
+
+See the rubric in rubric.md for quick manual review and comparison across prompt iterations.

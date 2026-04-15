@@ -1,0 +1,16 @@
+{
+  "intent": "Explain the pull of a dominant sonority in clear plain language.",
+  "scale_context": {
+    "root": "C",
+    "mode": "ionian",
+    "diatonic_pitch_classes": [0, 2, 4, 5, 7, 9, 11]
+  },
+  "chords": [
+    {
+      "root": "G",
+      "quality": "dominant7",
+      "pitch_classes": [7, 11, 2, 5],
+      "label": "G7"
+    }
+  ]
+}

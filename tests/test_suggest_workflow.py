@@ -42,6 +42,27 @@ class SuggestWorkflowTests(unittest.TestCase):
         self.assertNotIn("Cm7", result.advisory_note)
         self.assertIn("Cmaj7", result.advisory_note)
 
+    def test_suggest_handles_cadential_context_without_stalling(self):
+        progression = load_suggest_input({
+            "scale_context": {
+                "root": "C",
+                "mode": "ionian",
+                "diatonic_pitch_classes": [0, 2, 4, 5, 7, 9, 11]
+            },
+            "chords": [
+                {"root": "D", "quality": "minor7", "pitch_classes": [2, 5, 9, 0], "label": "Dm7"},
+                {"root": "G", "quality": "dominant7", "pitch_classes": [7, 11, 2, 5], "label": "G7"}
+            ]
+        })
+
+        mock_client = Mock()
+        mock_client.generate.return_value = "A practical next step is Cmaj7 for a stable landing."
+
+        result = suggest_next_moves(progression, client=mock_client)
+
+        self.assertEqual(len(result.suggestions), 3)
+        self.assertEqual(len({item.next_chord.root for item in result.suggestions}), 3)
+
     def test_suggest_next_moves_returns_three_structured_candidates(self):
         with EXAMPLE_FILE.open("r", encoding="utf-8") as handle:
             data = json.load(handle)

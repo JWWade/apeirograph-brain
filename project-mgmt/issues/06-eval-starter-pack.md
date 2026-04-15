@@ -1,5 +1,9 @@
 # Issue 06: Eval Starter Pack
 
+## Status
+
+Done
+
 ## Goal
 
 Create the first small evaluation set and rubric for usefulness, correctness, and clarity.
@@ -20,6 +24,12 @@ Without evaluation, the project can feel impressive while drifting away from act
 - A starter eval folder exists with named cases.
 - Cases reflect real Apeirograph-style reasoning tasks.
 - Outputs can be reviewed against a simple rubric.
+
+## Implementation notes
+
+- Added six starter cases across explanation and suggestion workflows.
+- Added a lightweight rubric for correctness, usefulness, and clarity.
+- Added a one-command eval summary for quick review and prompt comparison.
 
 ## Out of scope
 

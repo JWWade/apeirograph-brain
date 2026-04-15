@@ -190,8 +190,10 @@ def _build_scale_aware_candidates(progression: ProgressionInput) -> List[Suggest
             )
         )
 
-    while len(suggestions) < 3:
-        extra_idx = (current_index + len(suggestions) + 1) % len(ordered)
+    extra_offset = 1
+    while len(suggestions) < 3 and extra_offset <= len(ordered) * 2:
+        extra_idx = (current_index + extra_offset) % len(ordered)
+        extra_offset += 1
         chord = _build_diatonic_seventh_chord(scale.root, ordered, extra_idx)
         if chord.root in seen_roots:
             continue

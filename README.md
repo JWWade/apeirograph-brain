@@ -11,6 +11,7 @@ This repository now implements:
 - **Issue 03: Ollama Client Integration**
 - **Issue 04: Explain Workflow MVP**
 - **Issue 05: Suggest Workflow MVP**
+- **Issue 06: Eval Starter Pack**
 
 The current foundation provides:
 
@@ -20,6 +21,7 @@ The current foundation provides:
 - a minimal local Ollama client for prompt round-trips
 - a first explanation workflow for structured chord and progression analysis
 - a constrained suggestion workflow for next harmonic moves
+- a starter eval pack with named cases and a review rubric
 - sample schema examples for validation
 - documentation that supports fast iteration
 
@@ -71,7 +73,19 @@ The current foundation provides:
    python app.py --suggest-file "evals/cases/suggest-balanced-resolution.json"
    ```
 
-8. Run the smoke tests:
+8. Run the starter eval pack:
+
+   ```powershell
+   python app.py --run-evals
+   ```
+
+   For an optional live-model pass later, use:
+
+   ```powershell
+   python app.py --run-evals --eval-live-model
+   ```
+
+9. Run the smoke tests:
 
    ```powershell
    python -m unittest discover -s tests
@@ -91,7 +105,7 @@ If the prompt command says Ollama is unavailable, open the Ollama desktop app or
 
 ## Near-term roadmap
 
-- Issue 06: create a small eval pack
+The initial six-issue MVP foundation is now in place.
 
 ## Notes
 

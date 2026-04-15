@@ -1,0 +1,22 @@
+{
+  "intent": "Suggest the next move for a cadence that should feel settled but not dull.",
+  "scale_context": {
+    "root": "C",
+    "mode": "ionian",
+    "diatonic_pitch_classes": [0, 2, 4, 5, 7, 9, 11]
+  },
+  "chords": [
+    {
+      "root": "D",
+      "quality": "minor7",
+      "pitch_classes": [2, 5, 9, 0],
+      "label": "Dm7"
+    },
+    {
+      "root": "G",
+      "quality": "dominant7",
+      "pitch_classes": [7, 11, 2, 5],
+      "label": "G7"
+    }
+  ]
+}
