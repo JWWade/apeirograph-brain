@@ -1,0 +1,16 @@
+{
+  "intent": "Suggest a next move that stays gentle but adds a little color.",
+  "scale_context": {
+    "root": "G",
+    "mode": "ionian",
+    "diatonic_pitch_classes": [7, 9, 11, 0, 2, 4, 6]
+  },
+  "chords": [
+    {
+      "root": "G",
+      "quality": "major7",
+      "pitch_classes": [7, 11, 2, 6],
+      "label": "Gmaj7"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "intent": "Suggest the next chord with a balanced tonal feel.",
+  "scale_context": {
+    "root": "C",
+    "mode": "ionian",
+    "diatonic_pitch_classes": [0, 2, 4, 5, 7, 9, 11]
+  },
+  "chords": [
+    {
+      "root": "C",
+      "quality": "major7",
+      "pitch_classes": [0, 4, 7, 11],
+      "label": "Cmaj7"
+    },
+    {
+      "root": "A",
+      "quality": "minor7",
+      "pitch_classes": [9, 0, 4, 7],
+      "label": "Am7"
+    },
+    {
+      "root": "D",
+      "quality": "minor7",
+      "pitch_classes": [2, 5, 9, 0],
+      "label": "Dm7"
+    }
+  ]
+}

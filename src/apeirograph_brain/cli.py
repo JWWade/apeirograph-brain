@@ -4,6 +4,7 @@ from typing import List, Optional
 from apeirograph_brain.explain import explain_file
 from apeirograph_brain.ollama_client import OllamaClient, OllamaConnectionError
 from apeirograph_brain.settings import get_ollama_settings, get_project_paths
+from apeirograph_brain.suggest import suggest_file
 
 
 def build_default_system_prompt() -> str:
@@ -85,11 +86,24 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument("--prompt", help="Send a one-off prompt to the configured Ollama model")
     parser.add_argument("--system", help="Optional system message for the prompt")
     parser.add_argument("--explain-file", help="Explain a JSON chord or progression file and return structured analysis")
+    parser.add_argument("--suggest-file", help="Suggest three next-move options from a JSON progression file")
     args = parser.parse_args(argv)
 
     if args.explain_file:
         try:
             response = explain_file(args.explain_file)
+            print(response.json(indent=2))
+            return 0
+        except KeyboardInterrupt:
+            print("Request cancelled.")
+            return 130
+        except (OllamaConnectionError, ValueError, OSError) as exc:
+            print(str(exc))
+            return 1
+
+    if args.suggest_file:
+        try:
+            response = suggest_file(args.suggest_file)
             print(response.json(indent=2))
             return 0
         except KeyboardInterrupt:

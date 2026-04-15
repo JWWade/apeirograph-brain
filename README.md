@@ -10,6 +10,7 @@ This repository now implements:
 - **Issue 02: Domain Schemas**
 - **Issue 03: Ollama Client Integration**
 - **Issue 04: Explain Workflow MVP**
+- **Issue 05: Suggest Workflow MVP**
 
 The current foundation provides:
 
@@ -18,6 +19,7 @@ The current foundation provides:
 - core Pydantic schemas for harmonic objects and responses
 - a minimal local Ollama client for prompt round-trips
 - a first explanation workflow for structured chord and progression analysis
+- a constrained suggestion workflow for next harmonic moves
 - sample schema examples for validation
 - documentation that supports fast iteration
 
@@ -63,7 +65,13 @@ The current foundation provides:
    python app.py --explain-file "evals/cases/explain-c-major-triad.json"
    ```
 
-7. Run the smoke tests:
+7. Run a structured suggestion case:
+
+   ```powershell
+   python app.py --suggest-file "evals/cases/suggest-balanced-resolution.json"
+   ```
+
+8. Run the smoke tests:
 
    ```powershell
    python -m unittest discover -s tests
@@ -83,7 +91,6 @@ If the prompt command says Ollama is unavailable, open the Ollama desktop app or
 
 ## Near-term roadmap
 
-- Issue 05: implement suggestion flow
 - Issue 06: create a small eval pack
 
 ## Notes

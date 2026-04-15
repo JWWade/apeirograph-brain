@@ -1,5 +1,9 @@
 # Issue 05: Suggest Workflow MVP
 
+## Status
+
+Done
+
 ## Goal
 
 Create a constrained next-move suggestion workflow.
@@ -20,6 +24,13 @@ Suggestion quality will be a major signal of whether the model understands the h
 - The system returns multiple plausible next moves.
 - Each suggestion includes a clear reason.
 - Output is structured for later reuse or scoring.
+
+## Implementation notes
+
+- Added a constrained suggestion workflow with three structured candidates.
+- The CLI accepts a JSON progression file for suggestion requests.
+- Two reviewable eval cases were added for manual checks.
+- Candidate moves are kept grounded with deterministic harmonic logic.
 
 ## Out of scope
 
