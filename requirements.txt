@@ -1,5 +1,4 @@
 # Core runtime dependencies for the initial MVP.
-# Keep the scaffold light; richer integrations arrive in later issues.
+# Keep the scaffold light and compatible with the current local Python runtime.
 
 pydantic>=1.10,<2.0
-requests>=2.31,<3.0

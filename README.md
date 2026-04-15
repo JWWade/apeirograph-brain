@@ -8,12 +8,14 @@ This repository now implements:
 
 - **Issue 01: Repository Scaffold**
 - **Issue 02: Domain Schemas**
+- **Issue 03: Ollama Client Integration**
 
 The current foundation provides:
 
 - a clean Python project layout
 - a lightweight starter app
 - core Pydantic schemas for harmonic objects and responses
+- a minimal local Ollama client for prompt round-trips
 - sample schema examples for validation
 - documentation that supports fast iteration
 
@@ -35,21 +37,44 @@ The current foundation provides:
    pip install -r requirements.txt
    ```
 
-3. Run the starter app:
+3. Make sure Ollama is running and pull the MVP model:
+
+   ```powershell
+   ollama pull llama3.2:1b
+   ```
+
+4. Run the local app status check:
 
    ```powershell
    python app.py
    ```
 
-4. Run the smoke tests:
+5. Run a prompt round-trip through Ollama:
+
+   ```powershell
+   python app.py --prompt "Explain the harmonic color of C major 7 in one sentence."
+   ```
+
+6. Run the smoke tests:
 
    ```powershell
    python -m unittest discover -s tests
    ```
 
+## Ollama configuration
+
+The local runtime is configured with environment variables:
+
+- `APEIROGRAPH_OLLAMA_BASE_URL` — defaults to `http://localhost:11434`
+- `APEIROGRAPH_OLLAMA_MODEL` — defaults to `llama3.2:1b`
+- `APEIROGRAPH_OLLAMA_TIMEOUT_SECONDS` — defaults to `30`
+
+This keeps the MVP simple while giving one stable path for local prompt execution.
+
+If the prompt command says Ollama is unavailable, open the Ollama desktop app or start the local server with ollama serve.
+
 ## Near-term roadmap
 
-- Issue 03: add Ollama integration
 - Issue 04: implement explanation flow
 - Issue 05: implement suggestion flow
 - Issue 06: create a small eval pack

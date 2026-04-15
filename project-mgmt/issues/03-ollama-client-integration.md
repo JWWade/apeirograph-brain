@@ -1,5 +1,9 @@
 # Issue 03: Ollama Client Integration
 
+## Status
+
+Done
+
 ## Goal
 
 Add a minimal, stable local model wrapper using Ollama.
@@ -20,6 +24,12 @@ The prototype needs one dependable path for prompt execution so behavior can be 
 - The project can call one local model through Ollama.
 - Configuration is documented.
 - A test request returns a usable response.
+
+## Implementation notes
+
+- Default MVP model: llama3.2:1b
+- Runtime configuration is exposed through environment variables.
+- Local prompt round-trip verified against the installed Ollama runtime.
 
 ## Out of scope
 
